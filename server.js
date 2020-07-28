@@ -5,7 +5,7 @@ const htmlRoutes = require("./routes/htmlroutes.js");
 const apiRoutes = require("./routes/apiroutes");
 const { Workout } = require("./models/index.js");
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
