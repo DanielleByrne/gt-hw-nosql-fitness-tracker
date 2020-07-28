@@ -1,16 +1,24 @@
-var path = require("path");
+const express = require("express");
+const fs = require("fs");
+const router = express.Router();
 
 //routes to get to each html file
-module.exports = function (app) {
-  app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
-  });
+router.get("/", (req, res) => {
+  res.send("public/index.html");
+});
 
-  app.get("/exercise", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/exercise.html"));
+router.get("/stats", (req, res) => {
+  fs.readFile("public/stats.html", "utf8", (err, response) => {
+    if (err) throw err;
+    else res.send(response);
   });
+});
 
-  app.get("/stats", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/stats.html"));
+router.get("/exercise", (req, res) => {
+  fs.readFile("public/exercise.html", "utf8", (err, response) => {
+    if (err) throw err;
+    else res.send(response);
   });
-};
+});
+
+module.exports = router;
